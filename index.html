@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neha Malepati — Jack of All Trades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Suravaram&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">NM</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">
+          <h1></h1>home
+        </a></li>
+      <li><a href="pilates.html" class="nav-link-pilates">pilates</a></li>
+      <li><a href="tech.html" class="nav-link-tech">tech</a></li>
+      <li><a href="events.html" class="nav-link-events">events</a></li>
+      <li><a href="dance.html" class="nav-link-dance">dance</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-card-row">
+      <a href="pilates.html" class="suit-badge suit-heart">♥</a>
+      <a href="tech.html" class="suit-badge suit-club">♣</a>
+      <a href="events.html" class="suit-badge suit-diamond">♦</a>
+      <a href="dance.html" class="suit-badge suit-spade">♠</a>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">hi! i'm</p>
+      <div class="hero-name-flip" id="nameFlip">
+        <div class="hero-name-inner">
+          <h1 class="hero-name hero-name-front">neha malepati</h1>
+          <h1 class="hero-name hero-name-back">నేహా మాలేపాటి</h1>
+        </div>
+      </div>
+      <p class="hero-tagline">a jack of all trades</p>
+      <div class="hero-social">
+        <div class="social-resume-wrap">
+          <button class="social-icon social-icon-btn" aria-label="Email" id="emailToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </button>
+          <div class="resume-dropdown" id="emailDropdown">
+            <a href="mailto:neha.malepati@gmail.com">neha.malepati@gmail.com</a>
+            <a href="mailto:justapilatesprincess@gmail.com">justapilatesprincess@gmail.com</a>
+          </div>
+        </div>
+        <a href="https://instagram.com/justapilatesprincess" target="_blank" rel="noopener" class="social-icon"
+          aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/neha-malepati" target="_blank" rel="noopener" class="social-icon"
+          aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <a href="https://partiful.com/u/ihO4twSbQMZ0yjI2cY4wkwP3Zkz1" target="_blank" rel="noopener" class="social-icon"
+          aria-label="Partiful">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="currentColor">
+            <path d="M14.358 43.5c4.39 0 7.755-4.082 7.755-7.965c0-2.35-1.224-3.266-1.224-4.998c0-1.434.916-1.942 1.732-1.942c1.026 0 2.14.816 4.59.816c5.714 0 13.89-4.49 13.89-12.047C41.1 9.299 31.81 4.5 23.028 4.5c-7.248 0-15.004 2.957-15.004 8.065c0 5.516 8.98 5.715 8.98 9.907c0 4.49-10.105 5.108-10.105 12.864c0 4.292 3.166 8.164 7.458 8.164"/>
+            <path d="M12.416 37.896c-1.942 0-2.757-1.322-2.757-3.363c0-6.333 12.145-8.187 12.145-13.892c0-4.899-10.07-2.66-10.07-6.532c0-2.449 2.822-3.067 5.988-3.067c6.63 0 13.78 2.858 13.78 8.683c0 3.265-1.947 7.266-6.647 7.266c-.816 0-1.413-.253-2.44-.253c-8.074 0-3.56 11.169-10.01 11.169h.01z"/>
+          </svg>
+        </a>
+        <div class="social-resume-wrap">
+          <button class="social-icon social-icon-btn" aria-label="Resumes" id="resumeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </button>
+          <div class="resume-dropdown" id="resumeDropdown">
+            <a href="resumes/NehaMalepatiResumeTech.pdf" target="_blank">Tech Resume</a>
+            <a href="resumes/NehaMalepatiEventsResume.pdf" target="_blank">Events + Pilates Resume</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo-card">
+      <div class="hero-photo-inner">
+        <div class="hero-photo-front">
+          <img src="images/headshot.JPG" alt="Neha Malepati" class="hero-headshot" />
+        </div>
+        <div class="hero-photo-back">
+          <div class="hpc-quad hpc-tl">♥</div>
+          <div class="hpc-quad hpc-tr">♣</div>
+          <div class="hpc-quad hpc-bl">♦</div>
+          <div class="hpc-quad hpc-br">♠</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2>why jack? why not master?</h2>
+        <p>i thrive when i can pursue all my loves, wear different hats, and make meaningful connections with people
+          from all different backgrounds</p>
+        <p>no one is ever truly a master in tech (which is consistently evolving) or pilates (which requires ongoing
+          credits to stay certified)</p>
+        <p>calling myself a jack is a testament to my willingness to grow and stay open to whatever comes next</p>
+        <p>i hope you'll join me on this journey</p>
+      </div>
+      <div class="about-photo-wrap">
+        <figure class="yearbook-figure">
+          <img src="images/yearbook.jpeg" alt="Neha's third grade yearbook entry" class="yearbook-img" />
+          <figcaption class="yearbook-caption">from my third grade yearbook. i've always had multidimensional interests
+            growing up, which has carried into my college years and now my
+            career.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS SECTION -->
+  <section class="cards-section">
+    <div class="container">
+      <h2 class="cards-heading">explore my worlds</h2>
+      <div class="cards-grid">
+
+        <!-- PILATES — heart -->
+        <a href="pilates.html" class="card-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front suit-heart-card">
+                <span class="card-corner top-left">♥</span>
+                <span class="card-suit-big">♥</span>
+                <span class="card-corner bottom-right">♥</span>
+              </div>
+              <div class="flip-card-back suit-heart-back">
+                <span class="card-back-title">Pilates</span>
+                <span class="card-back-sub">my passion</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- TECH — clover -->
+        <a href="tech.html" class="card-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front suit-club-card">
+                <span class="card-corner top-left">♣</span>
+                <span class="card-suit-big">♣</span>
+                <span class="card-corner bottom-right">♣</span>
+              </div>
+              <div class="flip-card-back suit-club-back">
+                <span class="card-back-title">Tech</span>
+                <span class="card-back-sub">my trade</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- EVENTS — diamond -->
+        <a href="events.html" class="card-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front suit-diamond-card">
+                <span class="card-corner top-left">♦</span>
+                <span class="card-suit-big">♦</span>
+                <span class="card-corner bottom-right">♦</span>
+              </div>
+              <div class="flip-card-back suit-diamond-back">
+                <span class="card-back-title">Events</span>
+                <span class="card-back-sub">something special</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- DANCE — spade -->
+        <a href="dance.html" class="card-link">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front suit-spade-card">
+                <span class="card-corner top-left">♠</span>
+                <span class="card-suit-big">♠</span>
+                <span class="card-corner bottom-right">♠</span>
+              </div>
+              <div class="flip-card-back suit-spade-back">
+                <span class="card-back-title">Dance</span>
+                <span class="card-back-sub">ace up my sleeve</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA RESUMES -->
+  <section class="cta-section">
+    <div class="container cta-grid">
+      <div class="cta-card cta-movement">
+        <p class="cta-label">want to host an event or move with me?</p>
+        <a href="resumes/NehaMalepatiEventsResume.pdf" target="_blank" class="cta-btn btn-green">Events + Pilates
+          Resume</a>
+      </div>
+      <div class="cta-card cta-tech">
+        <p class="cta-label">want to build something meaningful?</p>
+        <a href="resumes/NehaMalepatiResumeTech.pdf" target="_blank" class="cta-btn btn-blue">Tech Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 Neha Malepati &nbsp;·&nbsp; jack of all trades</p>
+  </footer>
+
+  <audio id="bgAudio" src="music/websiteaudio.m4a" loop autoplay muted></audio>
+  <button class="music-toggle" id="musicToggle" aria-label="Toggle background music">
+    <span class="icon-muted">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        <line x1="2" y1="2" x2="22" y2="22"/>
+      </svg>
+    </span>
+    <span class="icon-playing">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+    </span>
+  </button>
+
+  <script>
+    document.getElementById('nameFlip').addEventListener('click', function () {
+      this.classList.toggle('flipped');
+    });
+
+    [
+      ['emailToggle', 'emailDropdown'],
+      ['resumeToggle', 'resumeDropdown'],
+    ].forEach(function ([btnId, dropId]) {
+      const btn = document.getElementById(btnId);
+      const drop = document.getElementById(dropId);
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = drop.classList.contains('open');
+        document.querySelectorAll('.resume-dropdown').forEach(function (d) { d.classList.remove('open'); });
+        if (!isOpen) drop.classList.add('open');
+      });
+    });
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.resume-dropdown').forEach(function (d) { d.classList.remove('open'); });
+    });
+
+  </script>
+
+</body>
+
+</html>
