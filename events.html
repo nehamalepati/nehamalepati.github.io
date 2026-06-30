@@ -26,6 +26,11 @@
       <li><a href="events.html" class="active nav-link-events">events</a></li>
       <li><a href="dance.html" class="nav-link-dance">dance</a></li>
     </ul>
+    <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <section class="page-hero page-hero--events">
@@ -106,7 +111,6 @@
             </div>
           </div>
           <div class="ev-book-nav">
-            <button class="ev-nav-btn ev-nav-btn--prev" disabled>&#8249;</button>
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
             <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
@@ -152,7 +156,6 @@
             </div>
           </div>
           <div class="ev-book-nav">
-            <button class="ev-nav-btn ev-nav-btn--prev" disabled>&#8249;</button>
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
             <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
@@ -216,7 +219,6 @@
             </div>
           </div>
           <div class="ev-book-nav">
-            <button class="ev-nav-btn ev-nav-btn--prev" disabled>&#8249;</button>
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
             <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
@@ -274,7 +276,6 @@
             </div>
           </div>
           <div class="ev-book-nav">
-            <button class="ev-nav-btn ev-nav-btn--prev" disabled>&#8249;</button>
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
             <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
@@ -330,7 +331,6 @@
             </div>
           </div>
           <div class="ev-book-nav">
-            <button class="ev-nav-btn ev-nav-btn--prev" disabled>&#8249;</button>
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
             <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
@@ -410,7 +410,6 @@
       const total = pages.length;
       const curEl = unit.querySelector('.ev-cur');
       const totEl = unit.querySelector('.ev-tot');
-      const prevBtn = unit.querySelector('.ev-nav-btn--prev');
       const nextBtn = unit.querySelector('.ev-nav-btn--next');
 
       const pfOptions = {
@@ -437,7 +436,6 @@
       function update(idx) {
         currentPage = idx;
         curEl.textContent = idx + 1;
-        prevBtn.disabled = idx === 0;
         nextBtn.disabled = idx === total - 1;
       }
 
@@ -451,17 +449,21 @@
       totEl.textContent = total;
       boot();
 
-      prevBtn.addEventListener('click', e => { e.stopPropagation(); pf.flip(currentPage - 1); });
-      nextBtn.addEventListener('click', e => { e.stopPropagation(); pf.flip(currentPage + 1); });
+      nextBtn.addEventListener('click', e => { e.stopPropagation(); pf.flipNext(); });
 
       let dragStartX = 0, dragStartY = 0;
       wrap.addEventListener('pointerdown', e => { dragStartX = e.clientX; dragStartY = e.clientY; }, true);
       wrap.addEventListener('click', e => {
-        if (e.target.closest('a')) return;
+        if (e.target.closest('a') || e.target.closest('.ev-nav-btn')) return;
         const dx = Math.abs(e.clientX - dragStartX);
         const dy = Math.abs(e.clientY - dragStartY);
         if (dx > 8 || dy > 8) return;
-        pf.flip(currentPage < total - 1 ? currentPage + 1 : 0);
+        if (currentPage === total - 1) {
+          pf.turnToPage(0);
+          update(0);
+        } else {
+          pf.flipNext();
+        }
       }, true);
     });
   </script>

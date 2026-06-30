@@ -1,3 +1,74 @@
+/* ── Hamburger menu ─────────────────────────────────────────── */
+(function () {
+  var hamburger = document.querySelector('.nav-hamburger');
+  var navbar    = document.querySelector('.navbar');
+  if (!hamburger || !navbar) return;
+
+  function closeMenu() {
+    navbar.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var opening = !navbar.classList.contains('open');
+    navbar.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(opening));
+  });
+
+  // Close when any nav link is tapped
+  navbar.querySelectorAll('.nav-links a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close when tapping outside the navbar
+  document.addEventListener('click', function (e) {
+    if (!navbar.contains(e.target)) closeMenu();
+  });
+})();
+
+/* ── Tap-to-flip cards ──────────────────────────────────────── */
+(function () {
+  var SELECTORS = [
+    '.hero-photo-card',
+    '.hero-name-flip',
+    '.cert-card:not(.cert-card--testimonials)',
+    '.schedule-day',
+    '.desi-card',
+    '.princess-logo-card',
+    '.tl-flip-card',
+    '.cta-flip-card',
+    '.offbrnd-card',
+    '.dance-roots-flip'
+  ];
+
+  var allCards = Array.prototype.slice.call(
+    document.querySelectorAll(SELECTORS.join(', '))
+  );
+  if (!allCards.length) return;
+
+  function untapAll(except) {
+    allCards.forEach(function (c) {
+      if (c !== except) c.classList.remove('tapped');
+    });
+  }
+
+  allCards.forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wasTapped = this.classList.contains('tapped');
+      untapAll(this);
+      this.classList.toggle('tapped', !wasTapped);
+    });
+  });
+
+  // Tap outside any card → untap all
+  document.addEventListener('click', function () {
+    untapAll(null);
+  });
+})();
+
+/* ── Music toggle ───────────────────────────────────────────── */
 (function () {
   var audio = document.getElementById('bgAudio');
   var btn   = document.getElementById('musicToggle');

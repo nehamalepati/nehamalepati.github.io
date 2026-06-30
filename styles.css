@@ -2687,36 +2687,46 @@ a.cert-card-inner--link {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
   margin-top: 14px;
+  height: 28px;
 }
 
 .ev-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  margin: 0;
+  padding: 0 4px;
   background: none;
   border: none;
-  color: rgba(21, 128, 61, 0.35);
-  font-size: 2.8rem;
+  color: #14532d;
+  font-size: 1.1rem;
   line-height: 1;
-  padding: 4px 2px;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: opacity 0.2s;
   user-select: none;
   -webkit-user-select: none;
 }
 
 .ev-nav-btn:hover:not(:disabled) {
-  color: rgba(21, 128, 61, 0.85);
+  opacity: 0.65;
 }
 
 .ev-nav-btn:disabled {
-  opacity: 0.12;
+  opacity: 0.2;
   cursor: default;
 }
 
 .ev-counter {
-  color: rgba(21, 128, 61, 0.45);
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  color: #14532d;
   font-size: 0.9rem;
   letter-spacing: 0.12em;
+  line-height: 1;
 }
 
 .ev-counter-sep {
@@ -3032,4 +3042,136 @@ a.cert-card-inner--link {
 .ev-mentors-section .mentor-name {
   color: var(--events-dark);
   font-family: var(--font-serif);
+}
+
+/* ============================================================
+   HAMBURGER BUTTON
+   ============================================================ */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* ============================================================
+   TAP-TO-FLIP (touch / click toggle)
+   ============================================================ */
+.hero-photo-card.tapped .hero-photo-inner,
+.cert-card.tapped .cert-card-inner,
+.schedule-day.tapped .schedule-day-inner,
+.desi-card.tapped .desi-card-inner,
+.princess-logo-card.tapped .princess-logo-inner,
+.tl-flip-card.tapped .tl-flip-inner,
+.cta-flip-card.tapped .cta-flip-inner,
+.offbrnd-card.tapped .offbrnd-card-inner,
+.dance-roots-flip.tapped .dance-roots-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.tl-flip-card.tapped {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.offbrnd-card.tapped {
+  transform: rotate(0deg) scale(1.06);
+  z-index: 5;
+}
+
+.hero-name-flip.tapped .hero-name-inner {
+  transform: rotateY(180deg);
+}
+
+/* ============================================================
+   MOBILE ADDITIONS (layered on top of existing 768px rules)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* --- Hamburger visible --- */
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* hamburger → X */
+  .navbar.open .nav-hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .navbar.open .nav-hamburger span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .navbar.open .nav-hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* --- Mobile nav dropdown --- */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 32px 20px;
+    background: rgba(250, 249, 247, 0.97);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    z-index: 99;
+  }
+
+  .navbar.open .nav-links {
+    display: flex;
+  }
+
+  .nav-links li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 0;
+    font-size: 1rem;
+  }
+
+  /* hide animated underline in dropdown; bold active link instead */
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-links a.active {
+    font-weight: 600;
+  }
+
+  /* --- Dance roots: stack vertically --- */
+  .dance-roots-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* --- Events books: center each unit when wrapping --- */
+  .ev-book-unit {
+    align-items: center;
+  }
 }
