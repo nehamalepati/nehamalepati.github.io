@@ -3174,4 +3174,39 @@ a.cert-card-inner--link {
   .ev-book-unit {
     align-items: center;
   }
+
+  /* --- Tech timeline: shrink cards to fit mobile screens --- */
+  .tl-flip-card {
+    width: 220px;
+    height: 310px;
+  }
+
+  /* --- Tech timeline: always show card above text on mobile --- */
+  .tl-card-col {
+    order: 1;
+  }
+
+  .tl-content-col {
+    order: 2;
+  }
+
+  /* --- Dance offbrnd: 2×2 grid instead of awkward horizontal scroll --- */
+  .offbrnd-scatter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow-x: unset;
+    padding: 16px 0;
+    justify-items: center;
+  }
+
+  .offbrnd-card {
+    width: 100%;
+    max-width: 160px;
+    transform: none;
+  }
+
+  .offbrnd-card.tapped {
+    transform: scale(1.03);
+  }
 }
