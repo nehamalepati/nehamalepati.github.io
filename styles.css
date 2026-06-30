@@ -2614,227 +2614,293 @@ a.cert-card-inner--link {
 }
 
 /* ============================================================
-   EVENTS PAGE — SCRAPBOOK BOOKS
+   EVENTS FLIPBOOK
    ============================================================ */
 
-.ev-scrapbook {
-  margin-bottom: 72px;
+.ev-flipbook-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-bg);
+  padding: 52px 24px 52px;
+  margin-bottom: 60px;
 }
 
-.ev-section-header {
+.ev-section-heading {
   text-align: center;
-  margin-bottom: 44px;
+  margin-bottom: 8px;
 }
 
-.ev-section-word {
+.ev-section-heading h2 {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--events-dark);
   font-style: italic;
-  display: block;
+  color: var(--events-dark);
+  margin: 0 0 6px;
 }
 
-.ev-section-sub {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.ev-section-heading p {
+  font-size: 1.25rem;
   color: var(--events-dark);
-  opacity: 0.5;
-  display: block;
-  margin-top: 5px;
+  opacity: 0.6;
+  margin: 0 0 32px;
+  line-height: 1.5;
 }
 
 .ev-books-row {
   display: flex;
   justify-content: center;
-  gap: 36px;
+  gap: 44px;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding: 16px 0 60px;
 }
 
-/* === BOOK SHELL === */
-.ev-book {
-  width: 280px;
-  height: 380px;
-  flex-shrink: 0;
-  transform: rotate(var(--tilt, 0deg));
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.ev-book::before,
-.ev-book::after {
-  content: '';
-  position: absolute;
-  border-radius: 3px 11px 11px 3px;
-  pointer-events: none;
-}
-
-.ev-book::before {
-  top: 4px;
-  right: -5px;
-  bottom: -4px;
-  left: 18px;
-  background: #e8ddd0;
-  z-index: -1;
-}
-
-.ev-book::after {
-  top: 8px;
-  right: -9px;
-  bottom: -8px;
-  left: 18px;
-  background: #dfd1c0;
-  z-index: -2;
-}
-
-.ev-book:hover {
-  transform: rotate(0deg) scale(1.02);
-  z-index: 5;
-}
-
-.ev-book-inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  border-radius: 3px 12px 12px 3px;
-  box-shadow:
-    0 10px 36px rgba(0, 0, 0, 0.2),
-    inset 3px 0 8px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  background: var(--events-bg);
-  position: relative;
-}
-
-.ev-book-spine {
-  width: 18px;
-  background: var(--events-hue);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-family: var(--font-serif);
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--events-dark);
-  text-transform: uppercase;
-  padding: 14px 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.07);
-  user-select: none;
-}
-
-/* === FLIPBOOK (StPageFlip container) === */
-.ev-flipbook {
-  flex: 1;
-  height: 100%;
-  position: relative;
-}
-
-/* === PAGES (styled for StPageFlip HTML mode) === */
-.ev-page {
-  background: var(--events-bg);
-  color: var(--events-dark);
-  overflow: hidden;
+.ev-book-unit {
   display: flex;
   flex-direction: column;
-  -webkit-user-select: none;
-  user-select: none;
+  align-items: center;
 }
 
-.ev-page--deco {
+.ev-book-wrap {
+  border-radius: 8px 14px 14px 8px;
+  overflow: hidden;
+  box-shadow:
+    -8px 0 18px -4px rgba(0, 0, 0, 0.22),
+    0 16px 44px rgba(0, 0, 0, 0.18),
+    4px 0 10px rgba(0, 0, 0, 0.1);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, opacity 0.18s ease;
+  cursor: pointer;
+}
+
+.ev-book-wrap:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow:
+    -8px 0 24px -4px rgba(0, 0, 0, 0.28),
+    0 24px 56px rgba(0, 0, 0, 0.22),
+    4px 0 12px rgba(0, 0, 0, 0.12);
+}
+
+.ev-book-nav {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px;
+  gap: 14px;
+  margin-top: 14px;
 }
 
-.ev-page--photo {
-  padding: 0;
-}
-
-.ev-page--photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  pointer-events: none;
-}
-
-.ev-page--text {
-  padding: 18px 13px 18px 10px;
-  gap: 9px;
-}
-
-/* === PAGE CONTENT === */
-.ev-deco-diamond {
-  font-size: 3rem;
-  color: var(--events-dark);
-  opacity: 0.16;
+.ev-nav-btn {
+  background: none;
+  border: none;
+  color: rgba(21, 128, 61, 0.35);
+  font-size: 2.8rem;
   line-height: 1;
+  padding: 4px 2px;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.ev-deco-rule {
-  width: 30px;
-  height: 1px;
+.ev-nav-btn:hover:not(:disabled) {
+  color: rgba(21, 128, 61, 0.85);
+}
+
+.ev-nav-btn:disabled {
+  opacity: 0.12;
+  cursor: default;
+}
+
+.ev-counter {
+  color: rgba(21, 128, 61, 0.45);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+}
+
+.ev-counter-sep {
+  margin: 0 2px;
+}
+
+/* === PAGE BASE === */
+.fp-page {
+  overflow: hidden;
+  background: #f0fdf4;
+}
+
+/* === COVER === */
+.fp-page--cover {
   background: var(--events-dark);
-  opacity: 0.16;
 }
 
-.ev-deco-label {
-  font-size: 0.55rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--events-dark);
-  opacity: 0.36;
+.fp-cover-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 32px;
   text-align: center;
 }
 
-.ev-book-eyebrow {
-  font-size: 0.58rem;
+.fp-cover-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  display: block;
+  margin-bottom: 18px;
+}
+
+.fp-cover-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: white;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.fp-cover-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* === PHOTO PAGES — scrapbook style === */
+.fp-page--photo {
+  background: #f0fdf4;
+}
+
+.fp-photo-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.fp-photo-frame {
+  background: white;
+  padding: 8px 8px 24px;
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.14),
+    0 1px 4px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 230px;
+}
+
+.fp-photo-frame--l {
+  transform: rotate(-2deg);
+}
+
+.fp-photo-frame--r {
+  transform: rotate(1.5deg);
+}
+
+.fp-photo-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.fp-photo-caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--events-dark);
+  opacity: 0.55;
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.5;
+  max-width: 230px;
+}
+
+/* === DETAIL PAGES === */
+.fp-page--detail {
+  background: #f0fdf4;
+  padding: 44px 38px 36px;
+  box-sizing: border-box;
+}
+
+.fp-detail-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--events-dark);
+  opacity: 0.55;
+  margin-bottom: 14px;
+}
+
+.fp-detail-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--events-dark);
+  opacity: 0.2;
+  margin-bottom: 24px;
+}
+
+.fp-stats-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.fp-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.fp-stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--events-dark);
+  line-height: 1;
+}
+
+.fp-stat-lbl {
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--events-dark);
-  opacity: 0.5;
+  opacity: 0.45;
+  margin-top: 4px;
 }
 
-.ev-book-title {
-  font-family: var(--font-serif);
+.fp-detail-text {
   font-size: 1rem;
-  font-weight: 700;
+  line-height: 1.82;
   color: var(--events-dark);
-  line-height: 1.3;
-  margin: 0;
+  margin: 0 0 16px;
 }
 
-.ev-book-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.76rem;
-  color: var(--events-dark);
-  opacity: 0.75;
-  line-height: 1.55;
-  margin: 0;
+.fp-detail-text--sm {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+  margin-bottom: 10px;
 }
 
-.ev-book-text {
-  font-size: 0.76rem;
-  line-height: 1.72;
-  color: var(--events-dark);
-  margin: 0;
+.fp-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 28px;
 }
 
-.ev-book-link {
-  font-size: 0.74rem;
+.fp-link {
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--events-dark);
   text-decoration: underline;
@@ -2842,46 +2908,73 @@ a.cert-card-inner--link {
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s;
   display: inline-block;
-  line-height: 1.5;
 }
 
-.ev-book-link:hover {
+.fp-link:hover {
   text-decoration-color: var(--events-dark);
 }
 
-.ev-book-collab-list {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+.fp-collab {
+  font-size: 0.9rem;
+  color: var(--events-dark);
+  opacity: 0.75;
+  line-height: 1.55;
 }
 
-/* === DOT NAVIGATION (absolute within .ev-book) === */
-.ev-book-dots-bar {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  z-index: 20;
-  pointer-events: none;
-}
-
-.ev-book-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
+.fp-rsvp-btn {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: white;
   background: var(--events-dark);
-  opacity: 0.2;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: opacity 0.2s, transform 0.2s;
+  padding: 9px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
 }
 
-.ev-book-dot.active {
-  opacity: 0.65;
-  transform: scale(1.35);
+.fp-rsvp-btn:hover {
+  opacity: 0.85;
 }
+
+/* === BACK COVER === */
+.fp-page--back {
+  background: var(--events-dark);
+}
+
+.fp-back-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fp-back-corner {
+  position: absolute;
+  color: var(--events-hue);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.fp-back-corner--tl {
+  top: 21px;
+  left: 24px;
+}
+
+.fp-back-corner--br {
+  bottom: 21px;
+  right: 24px;
+}
+
+.fp-back-suit {
+  font-size: 6.5rem;
+  color: var(--events-hue);
+  line-height: 1;
+  user-select: none;
+}
+
 
 /* ============================================================
    EVENTS PAGE
