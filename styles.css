@@ -2759,7 +2759,7 @@ a.cert-card-inner--link {
   font-size: 0.65rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(187, 247, 208, 0.38);
   display: block;
   margin-bottom: 18px;
 }
@@ -2778,7 +2778,7 @@ a.cert-card-inner--link {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(187, 247, 208, 0.42);
   line-height: 1.6;
   margin: 0;
 }
