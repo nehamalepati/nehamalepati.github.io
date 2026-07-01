@@ -1664,7 +1664,7 @@ a.cert-card-inner--link {
 .cta-card-section {
   display: flex;
   justify-content: center;
-  padding: 40px 0 80px;
+  padding: 0px 0 80px;
 }
 
 .cta-flip-card {
@@ -2624,7 +2624,7 @@ a.cert-card-inner--link {
   transform: translateX(-50%);
   background: var(--color-bg);
   padding: 52px 24px 52px;
-  margin-bottom: 60px;
+  margin-bottom: 0px;
 }
 
 .ev-section-heading {
@@ -2642,11 +2642,10 @@ a.cert-card-inner--link {
 }
 
 .ev-section-heading p {
-  font-size: 1.25rem;
-  color: var(--events-dark);
-  opacity: 0.6;
+  font-size: 1rem;
+  color: var(--color-text-light);
   margin: 0 0 32px;
-  line-height: 1.5;
+  line-height: 1.75;
 }
 
 .ev-books-row {
@@ -3005,6 +3004,10 @@ a.cert-card-inner--link {
 }
 
 /* Events CTA card */
+.ev-cta-face--front .tl-corner {
+  font-size: 1.8rem;
+}
+
 .ev-cta-face--front {
   background: var(--events-bg);
   color: var(--events-dark);
