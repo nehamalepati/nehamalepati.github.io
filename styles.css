@@ -596,10 +596,6 @@ ul {
   line-height: 1;
 }
 
-.page-pilates .card-corner {
-  font-size: 1.5rem;
-}
-
 .card-corner.top-left {
   top: 14px;
   left: 16px;
