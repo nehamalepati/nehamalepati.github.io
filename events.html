@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.className += ' anim-ready';</script>
   <title>Events — Neha Malepati</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,7 +42,7 @@
 
   <main class="container page-content">
 
-    <section class="ev-intro">
+    <section class="ev-intro reveal">
       <p class="ev-intro-text">i strive to create events that are more than just a moment, but rather a space
         where people discover something new about themselves, each other, and the world around them</p>
     </section>
@@ -53,7 +54,7 @@
         <h2>recent</h2>
         <p>community wellness events in greater boston</p>
       </div>
-      <div class="ev-books-row">
+      <div class="ev-books-row reveal-stagger">
 
         <!-- ── Natya & Nomz ── -->
         <div class="ev-book-unit">
@@ -111,7 +112,7 @@
           <div class="ev-book-nav">
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
-            <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
+            <button class="ev-nav-btn ev-nav-btn--next" aria-label="next page">&#8250;</button>
           </div>
         </div>
 
@@ -156,7 +157,7 @@
           <div class="ev-book-nav">
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
-            <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
+            <button class="ev-nav-btn ev-nav-btn--next" aria-label="next page">&#8250;</button>
           </div>
         </div>
 
@@ -166,7 +167,7 @@
         <h2>past</h2>
         <p>student leadership at cornell university</p>
       </div>
-      <div class="ev-books-row">
+      <div class="ev-books-row reveal-stagger">
 
         <!-- ── Finnovation ── -->
         <div class="ev-book-unit">
@@ -219,7 +220,7 @@
           <div class="ev-book-nav">
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
-            <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
+            <button class="ev-nav-btn ev-nav-btn--next" aria-label="next page">&#8250;</button>
           </div>
         </div>
 
@@ -276,7 +277,7 @@
           <div class="ev-book-nav">
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
-            <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
+            <button class="ev-nav-btn ev-nav-btn--next" aria-label="next page">&#8250;</button>
           </div>
         </div>
 
@@ -331,7 +332,7 @@
           <div class="ev-book-nav">
             <span class="ev-counter"><span class="ev-cur">1</span><span class="ev-counter-sep"> / </span><span
                 class="ev-tot"></span></span>
-            <button class="ev-nav-btn ev-nav-btn--next">&#8250;</button>
+            <button class="ev-nav-btn ev-nav-btn--next" aria-label="next page">&#8250;</button>
           </div>
         </div>
 
@@ -340,7 +341,7 @@
     </section>
 
     <!-- CTA flip card -->
-    <section class="cta-card-section">
+    <section class="cta-card-section reveal">
       <div class="cta-flip-card">
         <div class="cta-flip-inner">
           <div class="cta-face ev-cta-face--front">
@@ -361,7 +362,7 @@
     <!-- Mentors -->
     <section class="content-section mentors-section ev-mentors-section">
       <h2>thank you to my community & leadership mentors</h2>
-      <div class="mentors-row">
+      <div class="mentors-row reveal-stagger">
         <div class="mentor-card">
           <img src="images/alyssa.jpg" alt="alyssa" class="mentor-photo" />
           <span class="mentor-name">alyssa</span>
@@ -419,11 +420,11 @@
         height: 420,
         size: 'fixed',
         drawShadow: true,
-        flippingTime: 750,
+        flippingTime: 680,
         usePortrait: true,
         startZIndex: 0,
         autoSize: false,
-        maxShadowOpacity: 0.65,
+        maxShadowOpacity: 0.5,
         showCover: true,
         mobileScrollSupport: false,
         swipeDistance: 40,
@@ -433,12 +434,28 @@
       };
 
       let currentPage = 0;
+      let closing = false;
       let pf;
 
       function update(idx) {
         currentPage = idx;
         curEl.textContent = idx + 1;
         nextBtn.disabled = idx === total - 1;
+      }
+
+      // Reset to the cover. Backward page-flipping is unreliable in this
+      // portrait/cover config, so instead of a hard snap we softly fade the
+      // book out, jump it back to the cover while hidden, then fade it in.
+      function closeBook() {
+        if (closing || currentPage === 0) return;
+        closing = true;
+        wrap.classList.add('is-resetting');
+        setTimeout(() => {
+          pf.turnToPage(0);
+          update(0);
+          wrap.classList.remove('is-resetting');
+          closing = false;
+        }, 220);
       }
 
       function boot() {
@@ -461,8 +478,7 @@
         const dy = Math.abs(e.clientY - dragStartY);
         if (dx > 8 || dy > 8) return;
         if (currentPage === total - 1) {
-          pf.turnToPage(0);
-          update(0);
+          closeBook();
         } else {
           pf.flipNext();
         }

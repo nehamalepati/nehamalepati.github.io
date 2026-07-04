@@ -68,6 +68,34 @@
   });
 })();
 
+/* ── Scroll reveal (deal-in) ────────────────────────────────── */
+(function () {
+  var els = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (!els.length) return;
+
+  function revealAll() {
+    els.forEach(function (el) { el.classList.add('in-view'); });
+  }
+
+  // No observer support (or reduced motion) → just show everything.
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    revealAll();
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+  els.forEach(function (el) { io.observe(el); });
+})();
+
 /* ── Music toggle ───────────────────────────────────────────── */
 (function () {
   var audio = document.getElementById('bgAudio');

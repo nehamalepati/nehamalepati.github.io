@@ -2682,6 +2682,12 @@ a.cert-card-inner--link {
     4px 0 12px rgba(0, 0, 0, 0.12);
 }
 
+/* Soft fade while resetting back to the cover (masks the instant jump) */
+.ev-book-wrap.is-resetting {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
 .ev-book-nav {
   display: flex;
   align-items: center;
@@ -2704,13 +2710,14 @@ a.cert-card-inner--link {
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   user-select: none;
   -webkit-user-select: none;
 }
 
 .ev-nav-btn:hover:not(:disabled) {
   opacity: 0.65;
+  transform: translateX(2px);
 }
 
 .ev-nav-btn:disabled {
@@ -3211,5 +3218,114 @@ a.cert-card-inner--link {
 
   .offbrnd-card.tapped {
     transform: scale(1.03);
+  }
+}
+
+/* ============================================================
+   MOTION — entrances, scroll reveal, reduced motion
+   The site is a deck of cards, so motion reads as paper:
+   things deal in, lift, and settle with a soft overshoot.
+   All entrance state is gated behind .anim-ready (added by
+   an inline script) so content is never hidden without JS.
+   ============================================================ */
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes deal-in {
+  from { opacity: 0; transform: translateY(32px) rotate(-4deg); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- Scroll reveal: whole blocks rise into place ---- */
+.anim-ready .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.anim-ready .reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Scroll reveal: children deal in one after another ---- */
+.anim-ready .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.34, 1.32, 0.5, 1);
+}
+
+.anim-ready .reveal-stagger.in-view > * {
+  opacity: 1;
+  transform: none;
+}
+
+.anim-ready .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.04s; }
+.anim-ready .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.12s; }
+.anim-ready .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.20s; }
+.anim-ready .reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.28s; }
+.anim-ready .reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.36s; }
+.anim-ready .reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.44s; }
+
+/* ---- Home hero: deal the pieces in on load ---- */
+.anim-ready .hero-eyebrow,
+.anim-ready .hero-name-flip,
+.anim-ready .hero-tagline,
+.anim-ready .hero-social,
+.anim-ready .hero-card-row {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-ready .hero-card-row  { animation-delay: 0.08s; }
+.anim-ready .hero-eyebrow   { animation-delay: 0.10s; }
+.anim-ready .hero-name-flip { animation-delay: 0.18s; }
+.anim-ready .hero-tagline   { animation-delay: 0.28s; }
+.anim-ready .hero-social    { animation-delay: 0.38s; }
+
+.anim-ready .hero-photo-card {
+  opacity: 0;
+  animation: deal-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+}
+
+/* ---- Inner page hero: suit, title, subtitle rise ---- */
+.anim-ready .page-hero-suit {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
+}
+
+.anim-ready .page-hero h1 {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.anim-ready .page-hero-sub {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.26s both;
+}
+
+/* ---- Respect reduced motion: no entrances, no snap ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .anim-ready .reveal,
+  .anim-ready .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
