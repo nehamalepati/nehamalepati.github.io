@@ -1072,6 +1072,14 @@ a.cert-card-inner--link {
   display: block;
 }
 
+.desi-card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .desi-card-back {
   transform: rotateY(180deg);
   display: flex;
